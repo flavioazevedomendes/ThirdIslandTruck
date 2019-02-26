@@ -3,14 +3,11 @@ package org.academiadecodigo.ThirdIslandTruck;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Road {
-    private Picture road;
-    private Rectangle rectangle;
+public class Cow extends GameObstacles {
+    //private Rectangle cow;
 
-    public Road(){
-    road = new Picture(10, 10, "resources/lul.jpg");
-    road.draw();
+    public Cow() {
+        super(new Picture( 968, (int)(Math.random() * 350), "resources/cow.png"));
 
     }
-
 }

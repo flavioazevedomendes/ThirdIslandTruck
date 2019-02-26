@@ -9,10 +9,10 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class KeyboardListener implements KeyboardHandler {
 
-    Movable movable;
+    private Truck truck;
 
-    public KeyboardListener(Movable movable) {
-        this.movable = movable;
+    public KeyboardListener(Truck truck) {
+        this.truck = truck;
 
         KeyboardEvent up = new KeyboardEvent();
         up.setKey(KeyboardEvent.KEY_UP);
@@ -35,10 +35,10 @@ public class KeyboardListener implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_DOWN:
-                movable.translate(0, 8);
+                truck.setDirection(Direction.DOWN);
                 break;
             case KeyboardEvent.KEY_UP:
-                movable.translate(0, -8);
+                truck.setDirection(Direction.UP);
 
         }
 
@@ -46,6 +46,6 @@ public class KeyboardListener implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-
+        truck.setDirection(null);
     }
 }
