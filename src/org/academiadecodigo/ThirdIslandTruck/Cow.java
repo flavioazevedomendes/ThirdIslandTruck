@@ -7,7 +7,7 @@ public class Cow extends GameObstacles {
     //private Rectangle cow;
 
     public Cow() {
-        super(new Picture( 968, (int)(Math.random() * 350), "resources/cow.png"));
+        super(new Picture( 968, (int)(Math.random() * (713 - 313) + 313), "resources/cow.png"));
 
     }
 }

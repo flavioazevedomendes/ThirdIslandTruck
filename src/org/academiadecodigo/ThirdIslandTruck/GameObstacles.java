@@ -15,7 +15,7 @@ public abstract class GameObstacles implements Colidable {
       //  while (picture.getX() >= 10) {
             try {
             picture.translate(-8, 0);
-                Thread.sleep(200);
+                Thread.sleep(10);
             } catch (Exception ex) {
 
             }

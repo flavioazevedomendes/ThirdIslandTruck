@@ -15,7 +15,7 @@ public class Truck {
         this.drunk = false;
         this.crashed = false;
         this.drinkedBeers = 0;
-        truck = new Picture(20, 200, "resources/OldTruck.png");
+        truck = new Picture(20, 520, "resources/OldTruck.png");
         truck.draw();
         KeyboardListener listener = new KeyboardListener(this);
 

@@ -3,8 +3,8 @@ package org.academiadecodigo.ThirdIslandTruck;
 
 public class Game {
 
-    public static final int ROAD_MIN_Y = 10;
-    public static final int ROAD_HEIGHT = 400;
+    public static final int ROAD_MIN_Y = 285;
+    public static final int ROAD_HEIGHT = 703;
     public static final int LINE1 = 400;
     public static final int LINE2 = 800;
 
@@ -39,3 +39,4 @@ public class Game {
         }
     }
 }
+

@@ -12,13 +12,6 @@ public class ObstaclesFactory {
                 return new OldLady();
 
             }
-
-          //  if (random <= .5) {
-            //    return new Cow();
-
-           // }
-            // gameObstacles[i] = new Cow();
-        //}
         return new Cow();
     }
 }
