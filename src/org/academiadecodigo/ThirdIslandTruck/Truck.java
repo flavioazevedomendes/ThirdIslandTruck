@@ -44,10 +44,20 @@ public class Truck {
 
         }
         if (direction == Direction.UP) {
-            truck.translate(0, -8);
+            try{
+            truck.translate(0, -3);
+                Thread.sleep(0);
+            } catch (Exception ex) {
+
+            }
             return;
         }
-        truck.translate(0, 8);
+        try{
+            truck.translate(0, 3);
+            Thread.sleep(0);
+        } catch (Exception ex) {
+
+        }
     }
 
     public void setDirection(Direction direction) {

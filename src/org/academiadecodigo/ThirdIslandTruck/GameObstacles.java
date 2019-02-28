@@ -5,25 +5,21 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class GameObstacles implements Colidable {
     private Picture picture;
+    private Game game;
 
     public GameObstacles(Picture picture) {
-
         this.picture = picture;
+
     }
 
     public void move() {
-      //  while (picture.getX() >= 10) {
-            try {
-            picture.translate(-8, 0);
-                Thread.sleep(10);
-            } catch (Exception ex) {
+        try {
+            picture.translate(-3, 0);
+            Thread.sleep(5);
+        } catch (Exception ex) {
 
-            }
-            if(picture.getX() <= 10){
-                picture.delete();
-            }
-       // }
-        //picture.delete();
+        }
+
 
     }
 
@@ -36,12 +32,15 @@ public abstract class GameObstacles implements Colidable {
         picture.draw();
     }
 
-    public void checkPos() {
-        if (picture.getX() == 800) {
-            GameObstacles gameObstacles = ObstaclesFactory.createObstacles();
-            gameObstacles.showObstacle();
-            System.out.println("aaaaa");
+    public void checkPosition(){
+        if (picture.getX() <= 10){
+            picture.delete();
+
         }
     }
 
+
+    public int getPos() {
+        return picture.getX();
+    }
 }
