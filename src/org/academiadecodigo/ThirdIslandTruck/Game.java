@@ -9,49 +9,59 @@ public class Game {
     public static final int LINE1 = 400;
     public static final int LINE2 = 800;
 
-    private LinkedList obstaclesList;
+    private ObstaclesFactory factory;
     private Truck truck;
     private Road road;
+    private LinkedList<GameObstacle> activeList;
 
     public Game() {
         road = new Road();
         truck = new Truck();
-        this.obstaclesList = new LinkedList();
+        activeList = new LinkedList<>();
 
     }
 
     public void start() {
-        init();
-        GameObstacles obstacle = generateObstacle();
-        while (true) {
-            obstacle.move();
-            obstacle.checkPosition();
 
+        GameObstacle obstacle = factory.get();
+        activeList.add(obstacle);
+        int counter = 0;
+        while (true) {
+            for (GameObstacle obstacle1 : activeList) {
+                obstacle1.move();
+                if (obstacle1.checkPosition()) {
+
+                    continue;
+                }
+            }
+
+                if (counter == 100) {
+                    activeList.add(factory.get());
+                    counter = 0;
+
+                }
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+
+            }
+
+            counter++;
         }
+    }
+
+    private GameObstacle swapObstacle(GameObstacle obstacle) {
+        factory.recycle(obstacle);
+        return factory.get();
     }
 
 
     public void init() {
-        for (int i = 0; i < 10; i++) {
-            obstaclesList.add(ObstaclesFactory.createObstacles());
-
-        }
+        factory = new ObstaclesFactory();
+        factory.init();
     }
 
-    public GameObstacles generateObstacle() {
-        GameObstacles obstacle = (GameObstacles) obstaclesList.getFirst();
-        obstaclesList.removeFirst();
-        obstacle.showObstacle();
-        return obstacle;
-
-    }
-
-    public GameObstacles getNew(GameObstacles obstacles) {
-        if (obstacles.getPos() <= 803 && obstacles.getPos() >= 798) {
-            return generateObstacle();
-
-        }
-        return obstacles;
-    }
 }
 

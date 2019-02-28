@@ -3,24 +3,21 @@ package org.academiadecodigo.ThirdIslandTruck;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public abstract class GameObstacles implements Colidable {
+public abstract class GameObstacle implements Colidable {
     private Picture picture;
     private Game game;
 
-    public GameObstacles(Picture picture) {
+    public GameObstacle(Picture picture) {
         this.picture = picture;
 
     }
 
     public void move() {
-        try {
             picture.translate(-3, 0);
-            Thread.sleep(5);
-        } catch (Exception ex) {
+    }
 
-        }
-
-
+    public void moveTo(int x, int y) {
+        picture.translate(x - picture.getX(), y - picture.getY());
     }
 
     @Override
@@ -32,15 +29,16 @@ public abstract class GameObstacles implements Colidable {
         picture.draw();
     }
 
-    public void checkPosition(){
+    public boolean checkPosition(){
         if (picture.getX() <= 10){
+
             picture.delete();
 
+            return true;
         }
+
+        return false;
     }
 
 
-    public int getPos() {
-        return picture.getX();
-    }
 }
