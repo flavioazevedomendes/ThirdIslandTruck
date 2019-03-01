@@ -5,9 +5,11 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class GameObstacle implements Colidable {
     private Picture picture;
+    private int beerCount;
 
     public GameObstacle(Picture picture) {
         this.picture = picture;
+        beerCount = 0;
 
     }
 
@@ -24,7 +26,7 @@ public abstract class GameObstacle implements Colidable {
         if (truck.getMaxX() >= picture.getX()) {
             if (truck.getMaxY() <= picture.getMaxY() && truck.getMaxY() >= picture.getY()) {
                 return true;
-            }
+                }
             if (truck.getY() <= picture.getMaxY() && truck.getY() >= picture.getY()) {
                 return true;
             }
@@ -34,12 +36,17 @@ public abstract class GameObstacle implements Colidable {
                     picture.getMaxY() >= truck.getY()) {
                 return true;
             }
-        }
+            }
         return false;
-    }
+        }
+
 
     public void showObstacle() {
         picture.draw();
+    }
+
+    public void hideObstacle() {
+        picture.delete();
     }
 
     public boolean checkPosition() {
@@ -51,6 +58,11 @@ public abstract class GameObstacle implements Colidable {
         }
 
         return false;
+    }
+
+
+    public int getBeerCount() {
+        return beerCount;
     }
 
 

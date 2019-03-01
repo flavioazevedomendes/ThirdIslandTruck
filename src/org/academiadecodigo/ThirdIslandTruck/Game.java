@@ -1,5 +1,6 @@
 package org.academiadecodigo.ThirdIslandTruck;
 
+import org.academiadecodigo.ThirdIslandTruck.Obstacles.Beer;
 import org.academiadecodigo.ThirdIslandTruck.Obstacles.GameObstacle;
 import org.academiadecodigo.ThirdIslandTruck.Obstacles.ObstaclesFactory;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -10,17 +11,17 @@ public class Game {
 
     public static final int ROAD_MIN_Y = 285;
     public static final int ROAD_HEIGHT = 703;
-    public static final int LINE1 = 400;
-    public static final int LINE2 = 800;
 
     private ObstaclesFactory factory;
     private Truck truck;
     private Road road;
     private LinkedList<GameObstacle> activeList;
+    public static int beerCounter;
 
     public Game() {
         road = new Road();
         activeList = new LinkedList<>();
+        beerCounter = 0;
 
     }
 
@@ -36,18 +37,25 @@ public class Game {
 
                     continue;
                 }
-                if (obstacle1.collide(truck)){
-                    return;
-                }
 
+                if (obstacle1.collide(truck)) {
+                    if (obstacle1 instanceof Beer) {
+                        beerCounter++;
+                        obstacle1.hideObstacle();
+                        obstacle1.moveTo(-1,-1);
+                        System.out.println("collide " + beerCounter);
+                        continue;
+                    }
+                return;
+                }
             }
 
 
-                if (counter == 100) {
-                    activeList.add(factory.get());
-                    counter = 0;
+            if (counter == 100) {
+                activeList.add(factory.get());
+                counter = 0;
 
-                }
+            }
 
             try {
                 Thread.sleep(10);
@@ -60,7 +68,7 @@ public class Game {
         }
     }
 
-    public void end(){
+    public void end() {
         Picture picture = new Picture(10, 10, "resources/gameover.png");
         picture.draw();
 

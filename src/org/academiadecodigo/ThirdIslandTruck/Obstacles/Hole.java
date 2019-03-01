@@ -1,11 +1,12 @@
 package org.academiadecodigo.ThirdIslandTruck.Obstacles;
 
+import org.academiadecodigo.ThirdIslandTruck.Util;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Hole extends GameObstacle {
 
     public Hole() {
-        super(new Picture( 948, (int)(Math.random() * (650 - 313) + 313), "resources/Holeone.png"));
+        super(new Picture(948, Util.getRandom(313, 650), "resources/Holeone.png"));
 
     }
 }
