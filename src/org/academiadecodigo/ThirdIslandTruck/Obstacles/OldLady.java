@@ -1,4 +1,4 @@
-package org.academiadecodigo.ThirdIslandTruck;
+package org.academiadecodigo.ThirdIslandTruck.Obstacles;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 

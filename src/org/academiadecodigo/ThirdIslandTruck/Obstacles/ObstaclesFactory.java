@@ -1,4 +1,4 @@
-package org.academiadecodigo.ThirdIslandTruck;
+package org.academiadecodigo.ThirdIslandTruck.Obstacles;
 
 import java.util.LinkedList;
 
@@ -43,11 +43,18 @@ public class ObstaclesFactory {
     private GameObstacle createObstacle() {
         double random = (Math.random());
 
-        if (random <= .5) {
+        if (random <= .3) {
             return new OldLady();
 
         }
+        if (random <= .6){
         return new Cow();
+
+        }
+        if (random <= .7) {
+            return new Beer();
+        }
+        return new Hole();
     }
 
 }

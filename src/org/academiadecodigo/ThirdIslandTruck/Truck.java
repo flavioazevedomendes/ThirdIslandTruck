@@ -15,7 +15,7 @@ public class Truck {
         this.drunk = false;
         this.crashed = false;
         this.drinkedBeers = 0;
-        truck = new Picture(20, 520, "resources/OldTruck.png");
+        truck = new Picture(20, 520, "resources/OldTruckRudybilhas.png");
         truck.draw();
         KeyboardListener listener = new KeyboardListener(this);
 
@@ -44,12 +44,26 @@ public class Truck {
 
         }
         if (direction == Direction.UP) {
-            truck.translate(0, -6);
+            truck.translate(0, -12);
             return;
         }
-         truck.translate(0, 6);
+         truck.translate(0, 12);
 
     }
+
+    public int getMaxX(){
+        return truck.getMaxX();
+    }
+
+    public int getMaxY(){
+        return truck.getMaxY();
+    }
+
+    public int getY(){
+        return truck.getY();
+    }
+
+
 
     public void setDirection(Direction direction) {
         this.direction = direction;

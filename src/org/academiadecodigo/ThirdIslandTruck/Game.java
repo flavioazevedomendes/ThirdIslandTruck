@@ -1,5 +1,9 @@
 package org.academiadecodigo.ThirdIslandTruck;
 
+import org.academiadecodigo.ThirdIslandTruck.Obstacles.GameObstacle;
+import org.academiadecodigo.ThirdIslandTruck.Obstacles.ObstaclesFactory;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 import java.util.LinkedList;
 
 public class Game {
@@ -16,7 +20,6 @@ public class Game {
 
     public Game() {
         road = new Road();
-        truck = new Truck();
         activeList = new LinkedList<>();
 
     }
@@ -33,7 +36,12 @@ public class Game {
 
                     continue;
                 }
+                if (obstacle1.collide(truck)){
+                    return;
+                }
+
             }
+
 
                 if (counter == 100) {
                     activeList.add(factory.get());
@@ -52,6 +60,12 @@ public class Game {
         }
     }
 
+    public void end(){
+        Picture picture = new Picture(10, 10, "resources/gameover.png");
+        picture.draw();
+
+    }
+
     private GameObstacle swapObstacle(GameObstacle obstacle) {
         factory.recycle(obstacle);
         return factory.get();
@@ -61,6 +75,7 @@ public class Game {
     public void init() {
         factory = new ObstaclesFactory();
         factory.init();
+        truck = new Truck();
     }
 
 }

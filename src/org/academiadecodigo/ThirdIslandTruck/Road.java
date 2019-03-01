@@ -10,7 +10,7 @@ public class Road {
     public Road() {
         background = new Picture(10, 10, "resources/background.png");
         background.draw();
-        road = new Picture(10, 313, "resources/lul.jpg");
+        road = new Picture(10, 313, "resources/Road.jpg");
         road.draw();
 
     }

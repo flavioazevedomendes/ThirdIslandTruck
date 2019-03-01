@@ -15,12 +15,12 @@ public class KeyboardListener implements KeyboardHandler {
         this.truck = truck;
 
         KeyboardEvent up = new KeyboardEvent();
-        up.setKey(KeyboardEvent.KEY_UP);
+        up.setKey(KeyboardEvent.KEY_W);
         up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
 
         KeyboardEvent down = new KeyboardEvent();
-        down.setKey(KeyboardEvent.KEY_DOWN);
+        down.setKey(KeyboardEvent.KEY_S);
         down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
 
@@ -34,10 +34,10 @@ public class KeyboardListener implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
         switch (keyboardEvent.getKey()) {
-            case KeyboardEvent.KEY_DOWN:
+            case KeyboardEvent.KEY_S:
                 truck.setDirection(Direction.DOWN);
                 break;
-            case KeyboardEvent.KEY_UP:
+            case KeyboardEvent.KEY_W:
                 truck.setDirection(Direction.UP);
 
         }
