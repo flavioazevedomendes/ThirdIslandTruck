@@ -4,30 +4,17 @@ import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Truck {
-    private boolean drunk;
     private boolean crashed;
-    private int drinkedBeers;
     private Picture truck;
     private Direction direction;
+    private KeyboardListener listener;
 
 
-    public Truck() {
-        this.drunk = false;
+    public Truck(Game game) {
         this.crashed = false;
-        this.drinkedBeers = 0;
         truck = new Picture(20, 520, "resources/OldTruckRudybilhas.png");
         truck.draw();
-        KeyboardListener listener = new KeyboardListener(this);
-
-    }
-
-    public void crash() {
-        this.crashed = true;
-
-    }
-
-    public boolean isCrashed() {
-        return crashed;
+        KeyboardListener listener = new KeyboardListener(this, game);
 
     }
 

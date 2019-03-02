@@ -22,33 +22,34 @@ public class Game {
     private Picture firstbeer;
     private Picture middlebeer;
     private Picture fullbeer;
+    private int counter = 0;
+    private boolean gameStarter;
 
     public Game() {
-        road = new Road();
         activeList = new LinkedList<>();
         beerCounter = 0;
         nextObstacle = 0;
+        gameStarter = false;
+
 
     }
 
     public void start() {
+        road = new Road();
+        truck = new Truck(this);
         activeList.get(nextObstacle).showObstacle();
-        int counter = 0;
         while (true) {
             showBeer();
 
             moveAllObstacles();
 
-
-            if (counter == 90) {
-                nextObstacle++;
-                if (nextObstacle >= TOTAL_OBS) {
-                    nextObstacle = 0;
-                }
-                activeList.get(nextObstacle).showObstacle();
-                counter = 0;
-
+            if (checkCollisions()){
+                return;
             }
+
+            getNewObstacle();
+
+
 
             try {
                 Thread.sleep(9);
@@ -56,10 +57,12 @@ public class Game {
                 e.printStackTrace();
 
             }
-
             counter++;
+
         }
     }
+
+
 
     public void end() {
         Picture picture = new Picture(10, 10, "resources/gameover.png");
@@ -67,10 +70,19 @@ public class Game {
 
     }
 
+    public void mainMenu() {
+        Picture picture = new Picture(10, 10, "resources/MainMenu.jpg");
+        while (!gameStarter) {
+        picture.draw();
+        }
+        end();
+
+
+    }
+
 
     public void init() {
         factory = new ObstaclesFactory();
-        truck = new Truck();
         for (int i = 0; i < TOTAL_OBS; i++) {
             activeList.add(factory.createObstacle());
 
@@ -101,6 +113,13 @@ public class Game {
     private void moveAllObstacles() {
         for (GameObstacle obstacle : activeList) {
             obstacle.move();
+        }
+
+    }
+
+    private boolean checkCollisions() {
+        for(GameObstacle obstacle : activeList) {
+
             if (obstacle.checkPosition()) {
                 continue;
             }
@@ -111,14 +130,31 @@ public class Game {
                     obstacle.hideObstacle();
                     obstacle.moveTo(948, Util.getRandom(313, 650));
                     System.out.println("checkCollisions " + beerCounter);
-                    continue;
+                    return false;
                 }
-                return;
+                return true;
             }
+        }
+        return false;
+    }
+
+    private void getNewObstacle() {
+
+        if (counter == 90) {
+            nextObstacle++;
+            if (nextObstacle >= TOTAL_OBS) {
+                nextObstacle = 0;
+            }
+            activeList.get(nextObstacle).showObstacle();
+            counter = 0;
+
         }
 
     }
-    
+
+    public void startGame() {
+        gameStarter = true;
+    }
 
 }
 
