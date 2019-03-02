@@ -31,6 +31,7 @@ public class Game {
         activeList.add(obstacle);
         int counter = 0;
         while (true) {
+        showBeer();
             for (GameObstacle obstacle1 : activeList) {
                 obstacle1.move();
                 if (obstacle1.checkPosition()) {
@@ -42,11 +43,11 @@ public class Game {
                     if (obstacle1 instanceof Beer) {
                         beerCounter++;
                         obstacle1.hideObstacle();
-                        obstacle1.moveTo(-1,-1);
+                        obstacle1.moveTo(-1, -1);
                         System.out.println("collide " + beerCounter);
                         continue;
                     }
-                return;
+                    return;
                 }
             }
 
@@ -86,5 +87,23 @@ public class Game {
         truck = new Truck();
     }
 
+    public void showBeer() {
+        if (beerCounter <=1 ) {
+            Picture picture = new Picture(20,20, "resources/Emptybeer.png");
+            picture.draw();
+            return;
+
+        }
+        if (beerCounter <= 2) {
+            Picture picture = new Picture(20,20, "resources/Middlebeer.png");
+            picture.draw();
+            return;
+
+        }
+        if (beerCounter >= 3) {
+            Picture picture = new Picture(20,20, "resources/Fullbeer.png");
+            picture.draw();
+        }
+    }
 }
 

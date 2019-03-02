@@ -1,11 +1,9 @@
 package org.academiadecodigo.ThirdIslandTruck;
 
-import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class KeyboardListener implements KeyboardHandler {
 
@@ -35,14 +33,14 @@ public class KeyboardListener implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_S:
-                if (Game.beerCounter > 3) {
+                if (Game.beerCounter >= 3) {
                     truck.setDirection(Direction.UP);
                     break;
                 }
                 truck.setDirection(Direction.DOWN);
                 break;
             case KeyboardEvent.KEY_W:
-                if (Game.beerCounter > 3) {
+                if (Game.beerCounter >= 3) {
                     truck.setDirection(Direction.DOWN);
                     break;
                 }
