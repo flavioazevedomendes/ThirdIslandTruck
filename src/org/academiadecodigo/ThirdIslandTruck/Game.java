@@ -11,55 +11,47 @@ public class Game {
 
     public static final int ROAD_MIN_Y = 285;
     public static final int ROAD_HEIGHT = 703;
+    public static final int TOTAL_OBS = 15;
 
+    private int nextObstacle;
     private ObstaclesFactory factory;
     private Truck truck;
     private Road road;
-    private LinkedList<GameObstacle> activeList;
     public static int beerCounter;
+    private LinkedList<GameObstacle> activeList;
+    private Picture firstbeer;
+    private Picture middlebeer;
+    private Picture fullbeer;
 
     public Game() {
         road = new Road();
         activeList = new LinkedList<>();
         beerCounter = 0;
+        nextObstacle = 0;
 
     }
 
     public void start() {
-
-        GameObstacle obstacle = factory.get();
-        activeList.add(obstacle);
+        activeList.get(nextObstacle).showObstacle();
         int counter = 0;
         while (true) {
-        showBeer();
-            for (GameObstacle obstacle1 : activeList) {
-                obstacle1.move();
-                if (obstacle1.checkPosition()) {
+            showBeer();
 
-                    continue;
+            moveAllObstacles();
+
+
+            if (counter == 90) {
+                nextObstacle++;
+                if (nextObstacle >= TOTAL_OBS) {
+                    nextObstacle = 0;
                 }
-
-                if (obstacle1.collide(truck)) {
-                    if (obstacle1 instanceof Beer) {
-                        beerCounter++;
-                        obstacle1.hideObstacle();
-                        obstacle1.moveTo(-1, -1);
-                        System.out.println("collide " + beerCounter);
-                        continue;
-                    }
-                    return;
-                }
-            }
-
-
-            if (counter == 100) {
-                activeList.add(factory.get());
+                activeList.get(nextObstacle).showObstacle();
                 counter = 0;
 
             }
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(9);
             } catch (InterruptedException e) {
                 e.printStackTrace();
 
@@ -75,35 +67,58 @@ public class Game {
 
     }
 
-    private GameObstacle swapObstacle(GameObstacle obstacle) {
-        factory.recycle(obstacle);
-        return factory.get();
-    }
-
 
     public void init() {
         factory = new ObstaclesFactory();
-        factory.init();
         truck = new Truck();
+        for (int i = 0; i < TOTAL_OBS; i++) {
+            activeList.add(factory.createObstacle());
+
+        }
     }
 
     public void showBeer() {
-        if (beerCounter <=1 ) {
-            Picture picture = new Picture(20,20, "resources/Emptybeer.png");
-            picture.draw();
+        if (beerCounter < 1) {
+            firstbeer = new Picture(20, 20, "resources/Emptybeer.png");
+            firstbeer.draw();
             return;
 
         }
         if (beerCounter <= 2) {
-            Picture picture = new Picture(20,20, "resources/Middlebeer.png");
-            picture.draw();
+            firstbeer.delete();
+            middlebeer = new Picture(20, 20, "resources/Middlebeer.png");
+            middlebeer.draw();
             return;
 
         }
         if (beerCounter >= 3) {
-            Picture picture = new Picture(20,20, "resources/Fullbeer.png");
-            picture.draw();
+            middlebeer.delete();
+            fullbeer = new Picture(20, 20, "resources/Fullbeer.png");
+            fullbeer.draw();
         }
     }
+
+    private void moveAllObstacles() {
+        for (GameObstacle obstacle : activeList) {
+            obstacle.move();
+            if (obstacle.checkPosition()) {
+                continue;
+            }
+
+            if (obstacle.checkCollisions(truck)) {
+                if (obstacle instanceof Beer) {
+                    beerCounter++;
+                    obstacle.hideObstacle();
+                    obstacle.moveTo(948, Util.getRandom(313, 650));
+                    System.out.println("checkCollisions " + beerCounter);
+                    continue;
+                }
+                return;
+            }
+        }
+
+    }
+    
+
 }
 

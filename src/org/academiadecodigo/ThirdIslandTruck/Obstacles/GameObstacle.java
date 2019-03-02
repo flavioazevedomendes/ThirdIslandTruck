@@ -5,16 +5,21 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class GameObstacle implements Colidable {
     private Picture picture;
-    private int beerCount;
+    private boolean showed;
+
 
     public GameObstacle(Picture picture) {
         this.picture = picture;
-        beerCount = 0;
+        showed = false;
 
     }
 
     public void move() {
+        if(showed == true){
         picture.translate(-3, 0);
+        return;
+        }
+        return;
     }
 
     public void moveTo(int x, int y) {
@@ -22,7 +27,7 @@ public abstract class GameObstacle implements Colidable {
     }
 
     @Override
-    public boolean collide(Truck truck) {
+    public boolean checkCollisions(Truck truck) {
         if (truck.getMaxX() >= picture.getX()) {
             if (truck.getMaxY() <= picture.getMaxY() && truck.getMaxY() >= picture.getY()) {
                 return true;
@@ -42,17 +47,19 @@ public abstract class GameObstacle implements Colidable {
 
 
     public void showObstacle() {
+        showed = true;
         picture.draw();
     }
 
     public void hideObstacle() {
+        showed = false;
         picture.delete();
+        moveTo(948, Util.getRandom(313, 650));
     }
 
     public boolean checkPosition() {
         if (picture.getX() <= 10) {
-
-            picture.delete();
+          hideObstacle();
 
             return true;
         }
@@ -60,10 +67,13 @@ public abstract class GameObstacle implements Colidable {
         return false;
     }
 
-
-    public int getBeerCount() {
-        return beerCount;
+    public void setShowed() {
+        if(showed == true) {
+            showed = false;
+        }
+        showed = true;
     }
+
 
 
 }
