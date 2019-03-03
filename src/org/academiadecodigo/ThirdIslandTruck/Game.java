@@ -24,6 +24,7 @@ public class Game {
     private Picture fullbeer;
     private int counter = 0;
     private boolean gameStarter;
+    private KeyboardListener listener;
 
     public Game() {
         activeList = new LinkedList<>();
@@ -31,12 +32,12 @@ public class Game {
         nextObstacle = 0;
         gameStarter = false;
 
-
     }
 
     public void start() {
         road = new Road();
-        truck = new Truck(this);
+        truck.showTruck();
+
         activeList.get(nextObstacle).showObstacle();
         while (true) {
             showBeer();
@@ -52,7 +53,7 @@ public class Game {
 
 
             try {
-                Thread.sleep(9);
+                Thread.sleep(8);
             } catch (InterruptedException e) {
                 e.printStackTrace();
 
@@ -72,10 +73,11 @@ public class Game {
 
     public void mainMenu() {
         Picture picture = new Picture(10, 10, "resources/MainMenu.jpg");
+        truck = new Truck(this);
+        listener = new KeyboardListener(truck,this);
         while (!gameStarter) {
         picture.draw();
         }
-        end();
 
 
     }
@@ -140,7 +142,7 @@ public class Game {
 
     private void getNewObstacle() {
 
-        if (counter == 90) {
+        if (counter == 80) {
             nextObstacle++;
             if (nextObstacle >= TOTAL_OBS) {
                 nextObstacle = 0;

@@ -41,21 +41,21 @@ public class KeyboardListener implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_S:
-                if (Game.beerCounter >= 3) {
+                if (Game.beerCounter >= 6) {
                     truck.setDirection(Direction.UP);
                     break;
                 }
                 truck.setDirection(Direction.DOWN);
                 break;
             case KeyboardEvent.KEY_W:
-                if (Game.beerCounter >= 3) {
+                if (Game.beerCounter >= 6) {
                     truck.setDirection(Direction.DOWN);
                     break;
                 }
                 truck.setDirection(Direction.UP);
                 break;
             case KeyboardEvent.KEY_SPACE:
-                game.start();
+                game.startGame();
         }
 
     }

@@ -1,5 +1,6 @@
 package org.academiadecodigo.ThirdIslandTruck.Obstacles;
 
+import org.academiadecodigo.ThirdIslandTruck.Sound;
 import org.academiadecodigo.ThirdIslandTruck.Truck;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -48,6 +49,18 @@ public abstract class GameObstacle implements Colidable {
 
     public void showObstacle() {
         showed = true;
+        if(this instanceof Cow){
+            Sound cow = new Sound("/resources/Sound/cow.wav");
+            cow.play(true);
+        picture.draw();
+        return;
+        }
+        if (this instanceof OldLady){
+            Sound oldLady = new Sound("/resources/Sound/escomungado.wav");
+            oldLady.play(true);
+            picture.draw();
+            return;
+        }
         picture.draw();
     }
 

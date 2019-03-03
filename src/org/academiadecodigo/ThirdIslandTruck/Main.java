@@ -6,8 +6,13 @@ public class Main {
 
         Game game = new Game();
         game.init();
-       // game.mainMenu();
+        game.mainMenu();
+        Sound sound = new Sound("/resources/Sound/MainMusic.wav");
+        sound.play(true);
         game.start();
+        sound.stop();
+        Sound end = new Sound("/resources/Sound/endMusic.wav");
+        end.play(true);
         game.end();
 
     }

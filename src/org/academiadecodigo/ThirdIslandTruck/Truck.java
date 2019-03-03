@@ -13,8 +13,7 @@ public class Truck {
     public Truck(Game game) {
         this.crashed = false;
         truck = new Picture(20, 520, "resources/OldTruckRudybilhas.png");
-        truck.draw();
-        KeyboardListener listener = new KeyboardListener(this, game);
+
 
     }
 
@@ -56,4 +55,10 @@ public class Truck {
         this.direction = direction;
         move();
     }
+
+    public void showTruck(){
+        truck.draw();
+
+    }
 }
+
