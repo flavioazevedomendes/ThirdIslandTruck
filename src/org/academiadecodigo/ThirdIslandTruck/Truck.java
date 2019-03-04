@@ -1,17 +1,13 @@
 package org.academiadecodigo.ThirdIslandTruck;
 
-import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Truck {
-    private boolean crashed;
     private Picture truck;
     private Direction direction;
-    private KeyboardListener listener;
 
 
-    public Truck(Game game) {
-        this.crashed = false;
+    public Truck() {
         truck = new Picture(20, 520, "resources/OldTruckRudybilhas.png");
 
 

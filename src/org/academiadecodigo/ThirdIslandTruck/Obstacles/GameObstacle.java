@@ -16,9 +16,9 @@ public abstract class GameObstacle implements Colidable {
     }
 
     public void move() {
-        if(showed == true){
-        picture.translate(-3, 0);
-        return;
+        if (showed == true) {
+            picture.translate(-2, 0);
+            return;
         }
         return;
     }
@@ -32,7 +32,7 @@ public abstract class GameObstacle implements Colidable {
         if (truck.getMaxX() >= picture.getX()) {
             if (truck.getMaxY() <= picture.getMaxY() && truck.getMaxY() >= picture.getY()) {
                 return true;
-                }
+            }
             if (truck.getY() <= picture.getMaxY() && truck.getY() >= picture.getY()) {
                 return true;
             }
@@ -42,20 +42,20 @@ public abstract class GameObstacle implements Colidable {
                     picture.getMaxY() >= truck.getY()) {
                 return true;
             }
-            }
-        return false;
         }
+        return false;
+    }
 
 
     public void showObstacle() {
         showed = true;
-        if(this instanceof Cow){
+        if (this instanceof Cow) {
             Sound cow = new Sound("/resources/Sound/cow.wav");
             cow.play(true);
-        picture.draw();
-        return;
+            picture.draw();
+            return;
         }
-        if (this instanceof OldLady){
+        if (this instanceof OldLady) {
             Sound oldLady = new Sound("/resources/Sound/escomungado.wav");
             oldLady.play(true);
             picture.draw();
@@ -72,21 +72,13 @@ public abstract class GameObstacle implements Colidable {
 
     public boolean checkPosition() {
         if (picture.getX() <= 10) {
-          hideObstacle();
+            hideObstacle();
 
             return true;
         }
 
         return false;
     }
-
-    public void setShowed() {
-        if(showed == true) {
-            showed = false;
-        }
-        showed = true;
-    }
-
 
 
 }
