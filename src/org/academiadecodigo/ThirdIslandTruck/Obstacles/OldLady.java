@@ -6,7 +6,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class OldLady extends GameObstacle {
 
     public OldLady() {
-        super(new Picture(968, Util.getRandom(313,650), "resources/grandma.png"));
+        super(new Picture(968, Util.getRandom(313,645), "resources/grandma.png"));
 
     }
 

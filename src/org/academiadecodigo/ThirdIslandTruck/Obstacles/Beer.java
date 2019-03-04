@@ -6,7 +6,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Beer extends GameObstacle {
 
     public Beer() {
-        super(new Picture(948, Util.getRandom(313, 650), "resources/beer.png"));
+        super(new Picture(948, Util.getRandom(313, 640), "resources/beer.png"));
 
     }
 }

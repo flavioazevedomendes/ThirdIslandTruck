@@ -16,8 +16,8 @@ public abstract class GameObstacle implements Colidable {
     }
 
     public void move() {
-        if (showed == true) {
-            picture.translate(-2, 0);
+        if (showed) {
+            picture.translate(-4, 0);
             return;
         }
         return;

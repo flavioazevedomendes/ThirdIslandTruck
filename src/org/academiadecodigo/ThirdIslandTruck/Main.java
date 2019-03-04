@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) {
 
         Game game = new Game();
-        game.init();
         game.mainMenu();
+        game.init();
         Sound sound = new Sound("/resources/Sound/MainMusic.wav");
         sound.play(true);
         game.start();

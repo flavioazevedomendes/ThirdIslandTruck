@@ -3,7 +3,6 @@ package org.academiadecodigo.ThirdIslandTruck;
 import org.academiadecodigo.ThirdIslandTruck.Obstacles.Beer;
 import org.academiadecodigo.ThirdIslandTruck.Obstacles.GameObstacle;
 import org.academiadecodigo.ThirdIslandTruck.Obstacles.ObstaclesFactory;
-import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.LinkedList;
@@ -12,17 +11,18 @@ public class Game {
 
     public static final int ROAD_MIN_Y = 285;
     public static final int ROAD_HEIGHT = 703;
-    public static final int TOTAL_OBS = 7;
-
+    public static final int TOTAL_OBS = 15;
+    public static int beerCounter = 0;
     private int nextObstacle;
     private ObstaclesFactory factory;
     private Truck truck;
     private Road road;
-    public static int beerCounter = 0;
     private LinkedList<GameObstacle> activeList;
     private int counter = 0;
     private boolean gameStarter;
-    private KeyboardListener listener;
+    private Picture firstbeer;
+    private Picture middlebeer;
+    private Picture fullbeer;
 
     public Game() {
         activeList = new LinkedList<>();
@@ -33,6 +33,7 @@ public class Game {
     }
 
     public void start() {
+        gameStarter = false;
         road = new Road();
         truck.showTruck();
 
@@ -43,14 +44,14 @@ public class Game {
             moveAllObstacles();
 
             if (checkCollisions()) {
-                return;
+                break;
             }
 
             getNewObstacle();
 
 
             try {
-                Thread.sleep(0);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
 
@@ -64,18 +65,15 @@ public class Game {
     public void end() {
         Picture picture = new Picture(10, 10, "resources/gameover.png");
         picture.draw();
-
     }
 
     public void mainMenu() {
         Picture picture = new Picture(10, 10, "resources/MainMenu.jpg");
         truck = new Truck();
-        listener = new KeyboardListener(truck, this);
+        new KeyboardListener(truck, this);
         while (!gameStarter) {
             picture.draw();
         }
-
-
     }
 
 
@@ -85,26 +83,26 @@ public class Game {
             activeList.add(factory.createObstacle());
 
         }
+
+        firstbeer = new Picture(20, 20, "resources/Emptybeer.png");
+        middlebeer = new Picture(16, 20, "resources/Middlebeer.png");
+        fullbeer = new Picture(20, 20, "resources/Fullbeer.png");
     }
 
     public void showBeer() {
-        Picture firstbeer = new Picture(20, 20, "resources/Emptybeer.png");
-        Picture middlebeer = new Picture(16, 20, "resources/Middlebeer.png");
-        Picture fullbeer = new Picture(20, 20, "resources/Fullbeer.png");
-
-        if (beerCounter <= 0) {
+        if (beerCounter <= 2) {
             firstbeer.draw();
             return;
 
         }
         firstbeer.delete();
-        if (beerCounter <= 1) {
+        if (beerCounter <= 4) {
             middlebeer.draw();
             return;
 
         }
         middlebeer.delete();
-        if (beerCounter > 1) {
+        if (beerCounter > 6) {
             fullbeer.draw();
         }
     }
@@ -138,7 +136,7 @@ public class Game {
 
     private void getNewObstacle() {
 
-        if (counter == 160) {
+        if (counter == 100) {
             nextObstacle++;
             if (nextObstacle >= TOTAL_OBS) {
                 nextObstacle = 0;

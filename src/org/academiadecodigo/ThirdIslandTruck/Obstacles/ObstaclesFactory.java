@@ -8,7 +8,7 @@ public class ObstaclesFactory {
     public GameObstacle createObstacle() {
         double random = Util.getRandom();
 
-        if (random <= .2) {
+        if (random <= .25) {
             return new OldLady();
 
         }
@@ -16,10 +16,10 @@ public class ObstaclesFactory {
             return new Cow();
 
         }
-        if (random <= .75) {
+        if (random <= .85) {
+
             return new Beer();
         }
         return new Hole();
     }
-
 }
