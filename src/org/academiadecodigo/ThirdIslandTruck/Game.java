@@ -102,7 +102,7 @@ public class Game {
 
         }
         middlebeer.delete();
-        if (beerCounter > 6) {
+        if (beerCounter > 4) {
             fullbeer.draw();
         }
     }
