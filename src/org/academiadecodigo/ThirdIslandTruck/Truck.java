@@ -33,8 +33,11 @@ public class Truck {
             truck.translate(0, -12);
             return;
         }
+        if (direction == Direction.DOWN){
          truck.translate(0, 12);
 
+        }
+        return;
     }
 
     public int getMaxX(){
