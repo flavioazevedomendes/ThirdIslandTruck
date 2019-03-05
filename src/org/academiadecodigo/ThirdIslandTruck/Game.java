@@ -151,6 +151,5 @@ public class Game {
     public void startGame() {
         gameStarter = true;
     }
-
 }
 
